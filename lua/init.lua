@@ -1,4 +1,0 @@
-local lspconfig = require("lspconfig")
-
-lspconfig.pylsp.setup{}
-lspconfig.eslint.setup{}
