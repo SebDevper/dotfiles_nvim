@@ -16,7 +16,9 @@ require("lazy").setup({
             -- este codigo no se ejecutara hasta que la instalacion del plugin termine, es un callback
             vim.cmd.colorscheme("kanagawa-dragon")
         end,
-    },{
+    },
+    -- treesitter y parsers
+    {
         "nvim-treesitter/nvim-treesitter",
         config = function()
             require("nvim-treesitter.configs").setup({
@@ -31,4 +33,11 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        "neovim/nvim-lspconfig",
+        config = function()
+            local lspconfig = require("lspconfig")
+            lspconfig.clangd.setup({})
+        end
+    }
 })
