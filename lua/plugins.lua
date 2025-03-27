@@ -35,9 +35,24 @@ require("lazy").setup({
     },
     {
         "neovim/nvim-lspconfig",
+    },
+    {
+        "williamboman/mason.nvim",
         config = function()
-            local lspconfig = require("lspconfig")
-            lspconfig.clangd.setup({})
-        end
+            require("mason").setup()
+        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = {"mason.nvim"},
+        config = function()
+            require("mason-lspconfig").setup()
+            -- va a hacer setup automatico de todos los servidores instalados con mason
+            require("mason-lspconfig").setup_handlers({
+                function(server_name)
+                    require("lspconfig")[server_name].setup({})
+                end,
+            })
+        end,
     }
 })
